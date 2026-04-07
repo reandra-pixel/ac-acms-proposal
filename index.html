@@ -197,7 +197,7 @@
         #hero {
             min-height: 100vh;
             min-height: 100dvh;
-            background: var(--client-primary);
+            background: var(--ac-dark);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -208,10 +208,35 @@
             padding: 80px 48px;
         }
 
+        .hero-video-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-video-bg video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .hero-video-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 22, 31, 0.82);
+        }
+
         #hero::before {
             content: '';
             position: absolute;
             inset: 0;
+            z-index: 1;
             background:
                 radial-gradient(ellipse at 25% 45%, rgba(74,144,217,0.06) 0%, transparent 55%),
                 radial-gradient(ellipse at 75% 55%, rgba(54,209,194,0.04) 0%, transparent 55%);
@@ -1143,8 +1168,7 @@
 <nav class="nav">
     <div class="nav-inner">
         <div class="nav-brand">
-            <span style="font-family: 'Rubik', sans-serif; font-size: 14px; font-weight: 800; color: var(--ac-teal); letter-spacing: 1px;">AC</span>
-            <span style="font-family: 'Rubik', sans-serif; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 2px; text-transform: uppercase;">Anderson Collaborative</span>
+            <img src="ac-logo-transparent.png" alt="Anderson Collaborative">
         </div>
         <div class="nav-links">
             <a href="#hero" class="active">Home</a>
@@ -1165,10 +1189,14 @@
 <!-- SECTION 1: HERO                                                   -->
 <!-- ================================================================ -->
 <section id="hero" class="section-full">
-    <div class="hero-client-name">ACMS</div>
-    <div class="hero-client-sub">Automated Care Management Solutions</div>
+    <div class="hero-video-bg">
+        <video autoplay muted loop playsinline>
+            <source src="images/lets-talk-ac.mp4" type="video/mp4">
+        </video>
+    </div>
+    <img src="images/acms-logo.png" alt="ACMS — Automated Care Management Solutions" style="width: clamp(260px, 38vw, 480px); margin-bottom: 20px;">
     <div class="hero-x">a growth partnership with</div>
-    <div style="font-family: 'Rubik', sans-serif; font-size: clamp(18px, 2.2vw, 28px); font-weight: 700; color: var(--ac-teal); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px;">Anderson Collaborative</div>
+    <img src="ac-logo-transparent.png" alt="Anderson Collaborative" style="width: clamp(240px, 34vw, 420px); margin-bottom: 48px;">
     <div class="hero-title">Website Design &<br>Development Proposal</div>
     <div class="hero-sub">A comprehensive proposal for the design and development of a modern, professional website for ACMS — built to reflect your market positioning and support your growth objectives.</div>
     <div style="font-size: 12px; color: rgba(255,255,255,0.3); max-width: 480px; line-height: 1.6; margin-bottom: 32px;">In response to your Request for Proposal for Website Design & Development Services.</div>
@@ -1179,7 +1207,6 @@
     </div>
     <div style="position: absolute; bottom: 32px; left: 0; right: 0; text-align: center;">
         <div style="font-family: 'Rubik', sans-serif; font-size: 11px; font-style: italic; color: var(--ac-teal); opacity: 0.6; letter-spacing: 1px;">Solving The Marketing Problems Of Today With The Strategies Of Tomorrow</div>
-        <div style="font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 8px;">Anderson Collaborative LLC. &nbsp;|&nbsp; 4000 Ponce de Leon Blvd Suite 470, Coral Gables, FL 33146</div>
     </div>
 </section>
 
@@ -1188,8 +1215,8 @@
 <!-- ================================================================ -->
 <div id="welcome">
     <div class="welcome-inner">
-        <div class="welcome-logo" style="font-family: 'Rubik', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;">
-            <span style="color: var(--ac-teal);">AC</span> <span style="color: rgba(255,255,255,0.7); font-weight: 500; font-size: 16px;">Anderson Collaborative</span>
+        <div class="welcome-logo">
+            <img src="ac-logo-transparent.png" alt="Anderson Collaborative" style="height: 56px;">
         </div>
         <div class="welcome-heading">Welcome to Anderson <span class="teal">Collaborative</span></div>
 
@@ -1715,10 +1742,16 @@
         <div class="label" style="color: var(--ac-teal);">Let's Build Something Great</div>
         <h2 style="margin-bottom: 16px;">Ready When You Are</h2>
         <p>We're excited about the opportunity to build the digital foundation for ACMS. We'd love to dive deeper into your vision and get started on creating a website that truly represents the quality of your platform.</p>
+
+        <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap;">
+            <a href="mailto:trevor@andersoncollaborative.com?subject=ACMS%20Website%20Proposal%20-%20Next%20Steps" style="display: inline-block; font-family: 'Rubik', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--ac-dark); background: var(--ac-teal); text-decoration: none; padding: 14px 32px; border-radius: 8px; transition: all 0.3s;">Email Trevor</a>
+            <a href="https://calendar.app.google/SW54hoPc3FnFSo1e7" target="_blank" style="display: inline-block; font-family: 'Rubik', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--ac-teal); background: transparent; text-decoration: none; padding: 14px 32px; border-radius: 8px; border: 2px solid var(--ac-teal); transition: all 0.3s;">Schedule a Call</a>
+        </div>
+
         <div class="cta-info">
             <strong>Trevor Anderson</strong>
             <span>Founder & CEO, Anderson Collaborative</span>
-            <span>info@andersoncollaborative.com | 305-777-0471</span>
+            <span>trevor@andersoncollaborative.com | 305-777-0471</span>
             <span>4000 Ponce de Leon Blvd Suite 470, Coral Gables, FL 33146</span>
         </div>
         <div class="cta-tagline">Solving The Marketing Problems Of Today With The Strategies Of Tomorrow</div>
