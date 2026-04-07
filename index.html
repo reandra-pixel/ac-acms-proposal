@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACMS x Anderson Collaborative — Website Design & Development Proposal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ac-teal: #36D1C2;
+            --ac-teal-dark: #2bb8aa;
+            --ac-dark: #00161F;
+            --ac-offwhite: #FEF9F6;
+            --client-primary: #00161F;
+            --client-accent: #E8872B;
+            --text-dark: #0f1419;
+            --text-body: #3d4852;
+            --text-muted: #7b8794;
+            --border: #e8ecf0;
+            --card-bg: #f7f9fb;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Roboto', -apple-system, sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        /* ========== NAV ========== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 22, 31, 0.97);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(54, 209, 194, 0.1);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 56px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand img { height: 36px; }
+
+        .nav-brand span {
+            font-family: 'Rubik', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            font-family: 'Rubik', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--ac-teal);
+            background: rgba(54, 209, 194, 0.08);
+        }
+
+        .nav-client {
+            font-family: 'Rubik', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+
+        /* ========== SECTION SYSTEM ========== */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 48px 80px;
+        }
+
+        .section-full {
+            max-width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .section-narrow {
+            max-width: 780px;
+        }
+
+        /* ========== TYPOGRAPHY ========== */
+        .label {
+            font-family: 'Rubik', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--ac-teal);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .label::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--ac-teal);
+        }
+
+        h1 {
+            font-family: 'Rubik', sans-serif;
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-family: 'Rubik', sans-serif;
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.3px;
+        }
+
+        h3 {
+            font-family: 'Rubik', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-family: 'Rubik', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .body {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-body);
+        }
+
+        .body strong { color: var(--text-dark); }
+
+        .muted {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .teal { color: var(--ac-teal); }
+        .client-accent { color: var(--client-accent); }
+
+        /* ========== HERO ========== */
+        #hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--client-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 48px;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 25% 45%, rgba(74,144,217,0.06) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 55%, rgba(54,209,194,0.04) 0%, transparent 55%);
+        }
+
+        #hero > * { position: relative; z-index: 1; }
+
+        .hero-client-name {
+            font-family: 'Rubik', sans-serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 900;
+            color: white;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .hero-client-sub {
+            font-family: 'Rubik', sans-serif;
+            font-size: clamp(11px, 1.2vw, 14px);
+            font-weight: 400;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .hero-x {
+            font-family: 'Rubik', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 16px;
+            padding: 8px 0;
+        }
+
+        .hero-ac-logo {
+            width: clamp(260px, 38vw, 460px);
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-family: 'Roboto', sans-serif;
+            font-size: clamp(32px, 4.5vw, 56px);
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-top: 32px;
+            margin-bottom: 20px;
+        }
+
+        .hero-sub {
+            font-size: 16px;
+            color: rgba(255,255,255,0.5);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 72px;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 48px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .hero-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 32px 48px;
+        }
+
+        .hero-tagline {
+            font-family: 'Rubik', sans-serif;
+            font-size: 12px;
+            font-style: italic;
+            color: var(--ac-teal);
+            line-height: 1.6;
+            opacity: 0.7;
+        }
+
+        .hero-address {
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);
+            text-align: right;
+            line-height: 1.5;
+        }
+
+        .hero-address strong {
+            color: rgba(255,255,255,0.6);
+            font-size: 12px;
+        }
+
+        /* ========== WELCOME ========== */
+        #welcome {
+            background: var(--ac-dark);
+            color: white;
+            padding: 80px 48px 100px;
+        }
+
+        .welcome-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .welcome-logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome-logo img {
+            height: 56px;
+        }
+
+        .welcome-heading {
+            font-family: 'Rubik', sans-serif;
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 800;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .welcome-body {
+            font-size: 14px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.85;
+            margin-bottom: 20px;
+        }
+
+        .welcome-body strong { color: white; }
+
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 52px;
+        }
+
+        .phase-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 28px 24px;
+            transition: all 0.3s;
+        }
+
+        .phase-card:hover {
+            border-color: rgba(54, 209, 194, 0.2);
+            background: rgba(54, 209, 194, 0.04);
+        }
+
+        .phase-num {
+            font-family: 'Rubik', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ac-teal);
+            margin-bottom: 10px;
+        }
+
+        .phase-card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .phase-card p {
+            font-size: 12px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.65;
+        }
+
+        .welcome-closing {
+            text-align: center;
+            font-style: italic;
+            color: var(--ac-teal);
+            font-size: 14px;
+            margin-top: 52px;
+            opacity: 0.8;
+        }
+
+        /* ========== WHITE SECTIONS ========== */
+        .section-white { background: var(--white); }
+        .section-off { background: var(--card-bg); }
+
+        .content-block {
+            max-width: 780px;
+        }
+
+        .content-block h2 { margin-bottom: 20px; }
+        .content-block .body { margin-bottom: 20px; }
+
+        /* ========== OBJECTIVES ========== */
+        .objectives {
+            list-style: none;
+            counter-reset: obj;
+            margin: 32px 0;
+        }
+
+        .objectives li {
+            counter-increment: obj;
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+
+        .objectives li:last-child { border-bottom: none; }
+
+        .obj-num {
+            font-family: 'Rubik', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--ac-teal);
+            opacity: 0.3;
+            min-width: 44px;
+            line-height: 1;
+            padding-top: 2px;
+        }
+
+        .obj-text {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.7;
+        }
+
+        .obj-text strong { color: var(--text-dark); }
+
+        /* ========== SOLUTION CARDS ========== */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .solution-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 32px 28px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .solution-card:hover {
+            border-color: var(--ac-teal);
+            box-shadow: 0 8px 32px rgba(54, 209, 194, 0.08);
+        }
+
+        .solution-card .sol-icon {
+            font-family: 'Rubik', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ac-teal);
+            margin-bottom: 16px;
+        }
+
+        .solution-card h3 { margin-bottom: 12px; }
+
+        .solution-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ========== EXECUTION ========== */
+        .exec-channels {
+            margin: 32px 0;
+        }
+
+        .exec-channel {
+            display: flex;
+            gap: 20px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+
+        .exec-channel:last-child { border-bottom: none; }
+
+        .exec-dot {
+            width: 8px;
+            height: 8px;
+            min-width: 8px;
+            border-radius: 50%;
+            background: var(--ac-teal);
+            margin-top: 7px;
+        }
+
+        .exec-channel p {
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.7;
+        }
+
+        .exec-channel strong { color: var(--text-dark); }
+
+        /* ========== TIMELINE ========== */
+        .timeline-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .tl-phase {
+            padding: 36px 32px;
+            border: 1px solid var(--border);
+        }
+
+        .tl-phase:nth-child(1) {
+            background: var(--ac-dark);
+            color: white;
+            border-color: transparent;
+            border-radius: 12px 0 0 12px;
+        }
+
+        .tl-phase:nth-child(2) {
+            border-radius: 0 12px 12px 0;
+        }
+
+        .tl-num {
+            font-family: 'Rubik', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--ac-teal);
+            margin-bottom: 8px;
+        }
+
+        .tl-phase h3 {
+            margin-bottom: 16px;
+        }
+
+        .tl-phase ul {
+            list-style: none !important;
+            list-style-type: none !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tl-phase ul li {
+            font-size: 13px;
+            padding: 5px 0;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .tl-phase:nth-child(1) ul li { color: rgba(255,255,255,0.65); }
+        .tl-phase:nth-child(2) ul li { color: var(--text-body); }
+
+        .tl-phase ul li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--ac-teal);
+            position: absolute;
+            left: 0;
+            top: 12px;
+        }
+
+        /* ========== CASE STUDIES ========== */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .case-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px 28px;
+            transition: all 0.3s;
+        }
+
+        .case-card:hover {
+            border-color: var(--ac-teal);
+        }
+
+        .case-card .case-type {
+            font-family: 'Rubik', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ac-teal);
+            margin-bottom: 8px;
+        }
+
+        .case-card h3 { margin-bottom: 12px; font-size: 20px; }
+
+        .case-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .case-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cs {
+            text-align: center;
+        }
+
+        .cs-num {
+            font-family: 'Rubik', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--ac-teal);
+        }
+
+        .cs-lbl {
+            font-size: 9px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .case-closing-bar {
+            background: var(--card-bg);
+            border-left: 3px solid var(--ac-teal);
+            padding: 20px 24px;
+            margin-top: 32px;
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.7;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* ========== TEAM ========== */
+        .team-intro {
+            max-width: 680px;
+            margin-bottom: 40px;
+        }
+
+        .team-group-label {
+            font-family: 'Rubik', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            border-color: var(--ac-teal);
+            box-shadow: 0 4px 20px rgba(54,209,194,0.06);
+        }
+
+        .team-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--ac-teal), var(--ac-teal-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-family: 'Rubik', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--ac-dark);
+        }
+
+        .team-card .t-name {
+            font-family: 'Rubik', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .team-card .t-role {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* ========== PRICING ========== */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px 28px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .price-card:hover {
+            border-color: var(--ac-teal);
+        }
+
+        .price-card.featured {
+            border-color: var(--ac-teal);
+            background: linear-gradient(135deg, rgba(54,209,194,0.04), rgba(54,209,194,0.01));
+        }
+
+        .price-card.featured::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: -10px;
+            left: 28px;
+            background: var(--ac-teal);
+            color: var(--ac-dark);
+            font-family: 'Rubik', sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 3px 14px;
+            border-radius: 4px;
+        }
+
+        .price-label {
+            font-family: 'Rubik', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ac-teal);
+            margin-bottom: 12px;
+        }
+
+        .price-amount {
+            font-family: 'Rubik', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .price-period {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .price-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            min-height: 42px;
+        }
+
+        .price-features {
+            list-style: none;
+        }
+
+        .price-features li {
+            font-size: 13px;
+            padding: 6px 0;
+            color: var(--text-body);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features li::before {
+            content: '\2713';
+            color: var(--ac-teal);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .pricing-extras {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .extra-block {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .extra-block .eb-info h4 { margin-bottom: 4px; }
+        .extra-block .eb-info p { font-size: 12px; color: var(--text-muted); }
+
+        .extra-block .eb-price {
+            font-family: 'Rubik', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .extra-block .eb-price span {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        /* ========== VISION ========== */
+        .vision-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .vision-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px 28px;
+            border-top: 3px solid var(--ac-teal);
+            transition: all 0.3s;
+        }
+
+        .vision-card:hover {
+            border-color: var(--ac-teal);
+            border-top-color: var(--ac-teal);
+        }
+
+        .vision-card:last-child {
+            border-top-color: var(--client-accent);
+        }
+
+        .v-phase {
+            font-family: 'Rubik', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ac-teal);
+            margin-bottom: 10px;
+        }
+
+        .vision-card:last-child .v-phase { color: var(--client-accent); }
+
+        .vision-card h3 { margin-bottom: 12px; }
+
+        .vision-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ========== FOOTER / CTA ========== */
+        #cta {
+            background: var(--ac-dark);
+            padding: 80px 48px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-inner .label { justify-content: center; }
+        .cta-inner .label::before { display: none; }
+
+        .cta-inner h2 {
+            margin-bottom: 16px;
+        }
+
+        .cta-inner p {
+            color: rgba(255,255,255,0.55);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .cta-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .cta-info strong {
+            color: white;
+            font-size: 16px;
+        }
+
+        .cta-tagline {
+            margin-top: 40px;
+            font-style: italic;
+            color: var(--ac-teal);
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        /* ========== CONFIDENTIAL BAR ========== */
+        .conf-bar {
+            background: var(--card-bg);
+            text-align: center;
+            padding: 16px;
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        /* ========== ANIMATIONS ========== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== SIMPLE LIST ========== */
+        .ac-list-simple {
+            list-style: none !important;
+            list-style-type: none !important;
+            margin: 0;
+            padding: 0;
+            font-size: 13px;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+        .ac-list-simple li {
+            list-style: none !important;
+            list-style-type: none !important;
+            padding: 2px 0 2px 16px;
+            position: relative;
+        }
+        .ac-list-simple li::before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: var(--ac-teal);
+            font-weight: 700;
+        }
+
+        /* ========== MATERIALS TABLE ========== */
+        .materials-tbl {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        .materials-tbl thead th {
+            background: var(--ac-dark);
+            color: white;
+            font-family: 'Rubik', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 10px 14px;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .materials-tbl tbody td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-body);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            section, .section-inner, #welcome, #hero, .hero-bottom { padding-left: 24px; padding-right: 24px; }
+            .phases-grid, .solution-grid, .pricing-cards, .vision-cards { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .cases-grid, .pricing-extras, .timeline-visual { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-meta { flex-direction: column; gap: 8px; }
+            .hero-bottom { flex-direction: column; gap: 20px; }
+        }
+
+        /* ========== PRINT / PDF ========== */
+        @page {
+            margin: 0.4in 0.5in;
+            size: letter;
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .nav { display: none !important; }
+            .fade-up { opacity: 1 !important; transform: none !important; }
+            section, #welcome, #cta, #hero { min-height: auto !important; }
+
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            h2 { font-size: 18px !important; margin-bottom: 10px !important; margin-top: 0 !important; }
+            h3 { font-size: 14px !important; margin-bottom: 6px !important; }
+            h4 { font-size: 12px !important; margin-bottom: 4px !important; }
+            .label { font-size: 9px !important; margin-bottom: 10px !important; letter-spacing: 2px !important; }
+            .body, .obj-text, .exec-channel p, .welcome-body, .muted,
+            .ac-list-simple li, .materials-tbl tbody td,
+            .case-closing-bar {
+                font-size: 11px !important;
+                line-height: 1.6 !important;
+            }
+
+            section {
+                padding: 36px 0 !important;
+                max-width: 100% !important;
+            }
+
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            .solution-grid, .pricing-cards, .vision-cards {
+                display: block !important;
+            }
+            .solution-grid > *, .pricing-cards > *, .vision-cards > * {
+                margin-bottom: 16px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .phases-grid, .pricing-extras, .timeline-visual {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 10px !important;
+            }
+
+            .team-grid {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 10px !important;
+            }
+
+            .solution-card, .price-card, .vision-card,
+            .phase-card, .extra-block {
+                padding: 16px 14px !important;
+                border-radius: 8px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                background: #f7f9fb !important;
+                border: 1px solid #e8ecf0 !important;
+            }
+
+            h2, h3, h4, .label {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            #hero {
+                padding: 48px 36px !important;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            #welcome { padding: 28px 0 24px !important; }
+
+            #overview { page-break-before: always; break-before: page; }
+            #solution { page-break-before: always; break-before: page; }
+            #execution { page-break-before: always; break-before: page; }
+            #wordpress { page-break-before: always; break-before: page; }
+            #proof { page-break-before: always; break-before: page; }
+            #team { page-break-before: always; break-before: page; }
+            #pricing { page-break-before: always; break-before: page; }
+            #vision { page-break-before: always; break-before: page; }
+            #cta { page-break-before: always; break-before: page; padding: 60px 36px !important; }
+
+            .conf-bar { font-size: 8px !important; padding: 8px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <div class="nav-inner">
+        <div class="nav-brand">
+            <span style="font-family: 'Rubik', sans-serif; font-size: 14px; font-weight: 800; color: var(--ac-teal); letter-spacing: 1px;">AC</span>
+            <span style="font-family: 'Rubik', sans-serif; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 2px; text-transform: uppercase;">Anderson Collaborative</span>
+        </div>
+        <div class="nav-links">
+            <a href="#hero" class="active">Home</a>
+            <a href="#welcome">Welcome</a>
+            <a href="#overview">Overview</a>
+            <a href="#solution">Solution</a>
+            <a href="#execution">Strategy</a>
+            <a href="#proof">Proof</a>
+            <a href="#team">Team</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#vision">Vision</a>
+        </div>
+        <div class="nav-client">ACMS | Proposal</div>
+    </div>
+</nav>
+
+<!-- ================================================================ -->
+<!-- SECTION 1: HERO                                                   -->
+<!-- ================================================================ -->
+<section id="hero" class="section-full">
+    <div class="hero-client-name">ACMS</div>
+    <div class="hero-client-sub">Automated Care Management Solutions</div>
+    <div class="hero-x">a growth partnership with</div>
+    <div style="font-family: 'Rubik', sans-serif; font-size: clamp(18px, 2.2vw, 28px); font-weight: 700; color: var(--ac-teal); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px;">Anderson Collaborative</div>
+    <div class="hero-title">Website Design &<br>Development Proposal</div>
+    <div class="hero-sub">A comprehensive proposal for the design and development of a modern, professional website for ACMS — built to reflect your market positioning and support your growth objectives.</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.3); max-width: 480px; line-height: 1.6; margin-bottom: 32px;">In response to your Request for Proposal for Website Design & Development Services.</div>
+    <div class="hero-meta">
+        <span>Prepared: April 2026</span>
+        <span>Prepared for: Bruno Piquin, CEO</span>
+        <span>Prepared by: Trevor Anderson</span>
+    </div>
+    <div style="position: absolute; bottom: 32px; left: 0; right: 0; text-align: center;">
+        <div style="font-family: 'Rubik', sans-serif; font-size: 11px; font-style: italic; color: var(--ac-teal); opacity: 0.6; letter-spacing: 1px;">Solving The Marketing Problems Of Today With The Strategies Of Tomorrow</div>
+        <div style="font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 8px;">Anderson Collaborative LLC. &nbsp;|&nbsp; 4000 Ponce de Leon Blvd Suite 470, Coral Gables, FL 33146</div>
+    </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 2: WELCOME                                                -->
+<!-- ================================================================ -->
+<div id="welcome">
+    <div class="welcome-inner">
+        <div class="welcome-logo" style="font-family: 'Rubik', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;">
+            <span style="color: var(--ac-teal);">AC</span> <span style="color: rgba(255,255,255,0.7); font-weight: 500; font-size: 16px;">Anderson Collaborative</span>
+        </div>
+        <div class="welcome-heading">Welcome to Anderson <span class="teal">Collaborative</span></div>
+
+        <div class="welcome-body"><strong>Thank you for considering Anderson Collaborative</strong> as your trusted partner in designing and developing the ACMS website. This proposal details our recommended approach to creating a modern, professional web presence that accurately reflects your market positioning in the healthcare technology space and supports your commercial growth objectives.</div>
+
+        <div class="welcome-body">With over a decade of experience delivering exceptional results for <strong>healthcare organizations, SaaS companies, and technology platforms</strong>, our team is uniquely positioned to build you a website that passes the "five second test" — where any visitor immediately understands who ACMS is and the value you deliver. Below is a concise overview of our 4-step approach.</div>
+
+        <div class="phases-grid phases-12">
+            <div class="phase-card fade-up">
+                <div class="phase-num">Phase One</div>
+                <h3>Discovery & Strategy</h3>
+                <p>We begin with a thorough discovery session to understand your platform, target audience, competitive landscape, and business goals. We'll identify North Star brand references, define the site architecture, and create a strategic content plan that positions ACMS as the trusted leader in care management solutions for high-complexity patient populations.</p>
+            </div>
+            <div class="phase-card fade-up">
+                <div class="phase-num">Phase Two</div>
+                <h3>Design & User Experience</h3>
+                <p>Our design team will craft a modern, professional interface that communicates credibility, trust, and innovation — essential for healthcare SaaS. Every page will be designed with conversion in mind, ensuring visitors understand your value proposition within seconds and are guided toward meaningful engagement with your brand.</p>
+            </div>
+        </div>
+
+        <div class="phases-grid phases-34">
+            <div class="phase-card fade-up">
+                <div class="phase-num">Phase Three</div>
+                <h3>Development & Integration</h3>
+                <p>Your website will be built using a modern tech stack — either a streamlined static site with Netlify CMS or a custom React/Next.js build with a headless CMS — giving your team full content management capabilities to make updates on the fly. Includes blog/newsroom, newsletter signup integration, and placeholder infrastructure for future video content.</p>
+            </div>
+            <div class="phase-card fade-up">
+                <div class="phase-num">Phase Four</div>
+                <h3>Launch & Optimization</h3>
+                <p>Before launch, we'll conduct thorough QA testing across all devices and browsers. Post-launch, we'll provide training for your team to manage content independently, plus ongoing SEO optimization to ensure ACMS ranks well in both traditional search engines and emerging AI-powered answer engines like ChatGPT, Gemini, and Perplexity.</p>
+            </div>
+        </div>
+
+        <div class="welcome-closing">
+            <em>At Anderson Collaborative, we're solving the marketing problems of today with the strategies of tomorrow.<br>
+            We look forward to building ACMS a digital presence worthy of your platform!</em>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 3: OVERVIEW + OBJECTIVES                                  -->
+<!-- ================================================================ -->
+<section id="overview" class="section-white fade-up">
+    <div class="content-block">
+        <div class="label">Overview</div>
+        <h2>ACMS | Website Design & Development <span class="teal">Proposal</span></h2>
+        <p class="muted" style="margin-bottom: 32px;">A tailored website solution for Automated Care Management Solutions. Questions or concerns? Do not hesitate to contact our team.</p>
+
+        <p class="body">ACMS is a <strong>healthcare technology company supporting organizations that manage high-risk, high-cost, and clinically complex patient populations.</strong> Your platform and services support programs including remote patient monitoring, chronic care management, transitional care management, and broader population health and care coordination initiatives.</p>
+
+        <p class="body">Your target buyers — <strong>health plans, health systems, ACOs, MSOs, and physician organizations</strong> — expect a digital presence that reflects the trust, credibility, and sophistication of the healthcare and healthcare SaaS markets. With ACMS approaching commercial readiness, now is the ideal time to build a <strong>modern, conversion-oriented website that clearly communicates your value proposition</strong> and supports lead generation through strong user experience and content hierarchy.</p>
+
+        <p class="body">Our recommended approach focuses on transforming your existing wireframe and draft content into a <strong>polished, professional digital presence</strong> — optimized for responsiveness, accessibility, performance, SEO, and ease of content updates — with a scalable architecture that supports future growth and solution expansion.</p>
+    </div>
+
+    <div style="margin-top: 56px;">
+        <div class="label">Our Objectives</div>
+        <ul class="objectives">
+            <li>
+                <div class="obj-num">01</div>
+                <div class="obj-text"><strong>Build a modern, professional website</strong> aligned with the expectations of enterprise healthcare and healthcare SaaS buyers — communicating trust, credibility, and sophistication</div>
+            </li>
+            <li>
+                <div class="obj-num">02</div>
+                <div class="obj-text"><strong>Clearly communicate ACMS's value proposition, solutions, and differentiators</strong> — positioning the company as a trusted partner to health plans, health systems, ACOs, and care management entities</div>
+            </li>
+            <li>
+                <div class="obj-num">03</div>
+                <div class="obj-text"><strong>Support lead generation</strong> through strong user experience, content hierarchy, conversion pathways, and SEO-optimized page structures</div>
+            </li>
+            <li>
+                <div class="obj-num">04</div>
+                <div class="obj-text"><strong>Deliver a scalable website architecture</strong> that supports future growth, solution expansion, blog/newsroom publishing, and ongoing marketing initiatives</div>
+            </li>
+            <li>
+                <div class="obj-num">05</div>
+                <div class="obj-text"><strong>Ensure ease of content updates</strong> with a CMS that empowers your team to manage pages, publish content, and maintain the site independently</div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 4: SOLUTION                                               -->
+<!-- ================================================================ -->
+<section id="solution" class="section-off fade-up">
+    <div class="label">The Solution</div>
+    <h2 style="margin-bottom: 8px;">How We'll Build Your Digital Presence</h2>
+    <p class="muted section-narrow">Three core pillars that deliver a website worthy of your platform.</p>
+
+    <div class="solution-grid">
+        <div class="solution-card">
+            <div class="sol-icon">Pillar One</div>
+            <h3>Strategic Design & UX</h3>
+            <p>A modern, professional design that communicates trust, credibility, and innovation. Built to pass the five-second test — any visitor will immediately understand who ACMS is and the value you deliver to healthcare organizations.</p>
+        </div>
+        <div class="solution-card">
+            <div class="sol-icon">Pillar Two</div>
+            <h3>Modern Development</h3>
+            <p>Built with a modern tech stack — either a high-performance static site with Netlify CMS or a custom React/Next.js application with a headless CMS. Your team will be able to update content, add blog posts, and manage pages through an intuitive editor interface.</p>
+        </div>
+        <div class="solution-card">
+            <div class="sol-icon">Pillar Three</div>
+            <h3>SEO & AI Visibility</h3>
+            <p>Built from the ground up with search engine optimization best practices. Structured data, semantic HTML, and content strategy designed to rank in both Google and emerging AI answer engines like ChatGPT and Gemini.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 5: EXECUTION STRATEGY                                     -->
+<!-- ================================================================ -->
+<section id="execution" class="section-white fade-up">
+    <div class="label">Execution Strategy</div>
+    <h2 style="margin-bottom: 20px;">Proposed Site Architecture</h2>
+    <p class="body section-narrow" style="font-style: italic;">A streamlined 6-8 page website designed to communicate your value proposition and convert visitors into prospects.</p>
+
+    <div class="exec-channels" style="max-width: 780px;">
+        <div class="exec-channel">
+            <div class="exec-dot"></div>
+            <p><strong>Homepage:</strong> H1 positioning ("High-Acuity Care Management Software for Value-Based Healthcare Organizations"), core solution pillars (TCM, CCM, RPM, Behavioral Health, Readmission Reduction, Risk-Based Optimization), and primary conversion pathway</p>
+        </div>
+        <div class="exec-channel">
+            <div class="exec-dot"></div>
+            <p><strong>What We Do — Core Capabilities:</strong> Detailed solution pages covering patient intake, care coordination engine, medication reconciliation, remote monitoring integration, clinical interoperability (FHIR-based), and measurable outcomes</p>
+        </div>
+        <div class="exec-channel">
+            <div class="exec-dot"></div>
+            <p><strong>Who We Serve:</strong> Audience-specific pages for health systems, Medicare Advantage plans, ACOs & REACH entities, and risk-bearing MSOs & physician groups — each with tailored value messaging</p>
+        </div>
+        <div class="exec-channel">
+            <div class="exec-dot"></div>
+            <p><strong>About ACMS:</strong> Company background, mission, leadership, and connection to your sister healthcare provider organization serving high-severity patient populations</p>
+        </div>
+        <div class="exec-channel">
+            <div class="exec-dot"></div>
+            <p><strong>Blog / Newsroom:</strong> Content hub for thought leadership, product updates, press releases, and SEO-driven educational content targeting care management and value-based care keywords</p>
+        </div>
+        <div class="exec-channel">
+            <div class="exec-dot"></div>
+            <p><strong>Contact / Request a Demo:</strong> Lead capture forms, conversion pathways, and scheduling integration designed for enterprise healthcare decision-makers</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 56px;">
+        <div class="label">Execution Timeline</div>
+        <div class="timeline-visual">
+            <div class="tl-phase">
+                <div class="tl-num">Phase One: Discover & Design</div>
+                <h3 style="color: white;">Weeks 1–3</h3>
+                <ul>
+                    <li>Discovery session & stakeholder alignment</li>
+                    <li>Competitive research & North Star brand review</li>
+                    <li>Sitemap & wireframe development</li>
+                    <li>Visual design concepts & style exploration</li>
+                    <li>Content strategy & copywriting framework</li>
+                </ul>
+            </div>
+            <div class="tl-phase">
+                <div class="tl-num">Phase Two: Build & Launch</div>
+                <h3>Weeks 4–6</h3>
+                <ul>
+                    <li>Frontend development & CMS configuration</li>
+                    <li>Blog/newsroom setup & email integration</li>
+                    <li>Responsive testing across all devices</li>
+                    <li>SEO implementation & structured data</li>
+                    <li>Team training & CMS documentation</li>
+                    <li>QA, launch, and post-launch monitoring</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 6: WORDPRESS & TECHNOLOGY                                 -->
+<!-- ================================================================ -->
+<section id="wordpress" class="section-off fade-up">
+    <div class="label">Technology Stack</div>
+    <h2 style="color: var(--ac-teal);">Three Approaches for ACMS</h2>
+    <p class="body" style="max-width: 680px; margin-bottom: 32px;">Based on your requirements for flexibility and in-house content management, we offer three proven approaches — each delivering full content editing capabilities for your team with different strengths depending on your priorities.</p>
+
+    <div class="cases-grid">
+        <div class="case-card" style="grid-column: 1 / -1;">
+            <div class="case-type">Option A</div>
+            <h3 style="font-size: 18px;">Static Site + Netlify CMS</h3>
+            <p style="margin-bottom: 12px;">A streamlined, high-performance static site deployed on Netlify with a built-in CMS editor. Your team gets an intuitive content management interface to update pages, publish blog posts, and manage media — while the site itself loads instantly with zero server overhead.</p>
+            <ul class="ac-list-simple">
+                <li><strong>Lightning-fast load times</strong> — static files served from a global CDN</li>
+                <li><strong>Built-in CMS editor</strong> — no code knowledge required for content updates</li>
+                <li><strong>Enterprise-grade security</strong> — no database to hack, no plugins to exploit</li>
+                <li><strong>Zero hosting costs</strong> — Netlify's free tier handles most business traffic</li>
+                <li><strong>Ideal for:</strong> MVP launch, budget-conscious builds, fast turnaround</li>
+            </ul>
+        </div>
+        <div class="case-card" style="grid-column: 1 / -1;">
+            <div class="case-type">Option B</div>
+            <h3 style="font-size: 18px;">WordPress CMS</h3>
+            <p style="margin-bottom: 12px;">The industry-standard content management system powering over 40% of the web. A familiar, proven platform with a massive plugin ecosystem — giving your team a user-friendly dashboard to manage every aspect of the site without touching code.</p>
+            <ul class="ac-list-simple">
+                <li><strong>Most widely adopted CMS</strong> — easy to find support, tutorials, and developers</li>
+                <li><strong>Intuitive admin dashboard</strong> — your team can update pages, publish posts, and manage media with minimal training</li>
+                <li><strong>Massive plugin ecosystem</strong> — thousands of extensions for forms, SEO, email marketing, and more</li>
+                <li><strong>Flexible hosting options</strong> — from managed WordPress hosts to your own infrastructure</li>
+                <li><strong>Ideal for:</strong> Teams who want a familiar CMS, frequent content updates, plugin-based extensibility</li>
+            </ul>
+        </div>
+        <div class="case-card" style="grid-column: 1 / -1;">
+            <div class="case-type">Option C</div>
+            <h3 style="font-size: 18px;">Custom React/Next.js + Headless CMS</h3>
+            <p style="margin-bottom: 12px;">A fully custom-built application using React and Next.js, paired with a headless CMS (such as Sanity, Contentful, or Strapi) for content management. This gives you maximum flexibility for interactive features, custom animations, and deeper platform integrations down the road.</p>
+            <ul class="ac-list-simple">
+                <li><strong>Native animations & interactivity</strong> — platform demos, animated explainers, dynamic content</li>
+                <li><strong>Headless CMS</strong> — your team edits content through a clean dashboard; developers control the frontend</li>
+                <li><strong>API-first architecture</strong> — seamless integration with your existing HIPAA-compliant systems</li>
+                <li><strong>Future-proof</strong> — easily expand into client portals, interactive demos, or mobile apps</li>
+                <li><strong>Ideal for:</strong> Premium builds, complex integrations, long-term scalability</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="cases-grid" style="margin-top: 24px;">
+        <div class="case-card">
+            <div class="case-type">All Options Include</div>
+            <h3 style="font-size: 16px;">Blog & Newsletter</h3>
+            <p>Full blogging and content publishing capabilities. Easily create press releases, product announcements, and thought leadership content with built-in newsletter signup integration.</p>
+        </div>
+        <div class="case-card">
+            <div class="case-type">All Options Include</div>
+            <h3 style="font-size: 16px;">Email & CRM Connectors</h3>
+            <p>Landing page pop-ups, newsletter signup forms, and email connectors — integrated with your preferred platform (Klaviyo, Mailchimp, or your existing HIPAA-compliant system via API).</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 7: PROVEN SUCCESS                                         -->
+<!-- ================================================================ -->
+<section id="proof" class="section-white fade-up">
+    <div class="label">Proven Success</div>
+    <h2 style="color: var(--ac-teal);">Proven Track Record in Web Design & Development</h2>
+    <p class="body" style="max-width: 680px;">With 500+ clients across 100+ industries and over a decade of experience, Anderson Collaborative designs and develops custom, high-performing websites and applications that prioritize delivering a memorable user experience. Here are a few relevant examples.</p>
+
+    <div class="cases-grid" style="margin-top: 32px;">
+        <div class="case-card">
+            <div class="case-type">Website Launch</div>
+            <h3>Landshark Vodka Seltzer</h3>
+            <p>Designed and launched a brand-new website for a nationally recognized beverage brand, going live March 2026. Clean, conversion-focused design built to support product launch and brand awareness.</p>
+            <div class="case-stats" style="margin-top: 12px;">
+                <div class="cs"><div class="cs-num">2026</div><div class="cs-lbl">Launched</div></div>
+                <div class="cs"><div class="cs-num">Live</div><div class="cs-lbl">landsharkvodkaseltzer.com</div></div>
+            </div>
+        </div>
+        <div class="case-card">
+            <div class="case-type">Website Redesign</div>
+            <h3>Verifix Security</h3>
+            <p>Complete digital presence overhaul — website refresh, blog content implementation, SEO setup, and Google Business Profile configuration. A flexible fixed-fee engagement laying the foundation for broader growth.</p>
+            <div class="case-stats" style="margin-top: 12px;">
+                <div class="cs"><div class="cs-num">Web</div><div class="cs-lbl">Full Redesign</div></div>
+                <div class="cs"><div class="cs-num">SEO</div><div class="cs-lbl">+ Blog Content</div></div>
+                <div class="cs"><div class="cs-num">GBP</div><div class="cs-lbl">Configured</div></div>
+            </div>
+        </div>
+        <div class="case-card">
+            <div class="case-type">SaaS Platform</div>
+            <h3>Rank Prompt</h3>
+            <p>Our own SaaS product — designed and built in-house with native animations, platform screenshots, and conversion-optimized UX. A direct reference for the quality of web design we deliver for ACMS.</p>
+        </div>
+        <div class="case-card">
+            <div class="case-type">Web Design & Branding</div>
+            <h3>Museum of Illusions</h3>
+            <p>Full branding and web experience for a multi-location entertainment company. Immersive design, bold visual identity, and cohesive storytelling — scaled from one location to a multi-market digital presence.</p>
+        </div>
+    </div>
+
+    <div class="case-closing-bar" style="margin-top: 28px;">
+        We've designed and developed 600+ websites over the last decade — from startup MVPs to enterprise platforms. We build digital assets that drive business outcomes, not just sites that look good.
+    </div>
+
+    <!-- Design Portfolio -->
+    <div style="margin-top: 48px;">
+        <div class="label">Design Portfolio</div>
+        <h2 style="margin-bottom: 8px;">See Our Work in <span class="teal">Action</span></h2>
+        <p class="muted" style="margin-bottom: 24px;">A selection of recent design projects showcasing our approach to UX/UI, branding, and web development.</p>
+    </div>
+
+    <!-- Project 1: AI Search Website -->
+    <div style="margin-bottom: 48px;">
+        <div style="font-family: 'Rubik', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ac-teal); margin-bottom: 16px;">UX/UI Design — AI Search Website</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <img src="images/ai-search-1.webp" alt="AI Search Website Design 1" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/ai-search-2.webp" alt="AI Search Website Design 2" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/ai-search-3.webp" alt="AI Search Website Design 3" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/ai-search-5.webp" alt="AI Search Website Design 5" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/ai-search-6.webp" alt="AI Search Website Design 6" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/ai-search-7.webp" alt="AI Search Website Design 7" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/ai-search-8.webp" alt="AI Search Website Design 8" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+    </div>
+
+    <!-- Project 2: Entertainment Company -->
+    <div style="margin-bottom: 48px;">
+        <div style="font-family: 'Rubik', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ac-teal); margin-bottom: 16px;">Branding & Web Design — Entertainment Company</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <img src="images/entertainment-1.webp" alt="Entertainment Company Design 1" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/entertainment-2.webp" alt="Entertainment Company Design 2" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/entertainment-3.webp" alt="Entertainment Company Design 3" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/entertainment-4.webp" alt="Entertainment Company Design 4" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+    </div>
+
+    <!-- Project 3: Cookbook to Cooking App -->
+    <div style="margin-bottom: 48px;">
+        <div style="font-family: 'Rubik', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ac-teal); margin-bottom: 16px;">App Design — Cookbook to Cooking App</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <img src="images/cookbook-1.webp" alt="Cookbook App Design 1" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/cookbook-2.webp" alt="Cookbook App Design 2" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/cookbook-3.webp" alt="Cookbook App Design 3" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+            <img src="images/cookbook-4.webp" alt="Cookbook App Design 4" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+    </div>
+
+    <!-- Video: Lets Talk AC -->
+    <div style="margin-bottom: 32px;">
+        <div style="font-family: 'Rubik', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ac-teal); margin-bottom: 16px;">Anderson Collaborative — Who We Are</div>
+        <video controls playsinline style="width: 100%; border-radius: 12px; border: 1px solid var(--border);" poster="">
+            <source src="images/lets-talk-ac.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div style="margin-top: 24px; text-align: center;">
+        <a href="https://dribbble.com/andersoncollab" target="_blank" style="display: inline-block; font-family: 'Rubik', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ac-dark); background: var(--ac-teal); text-decoration: none; padding: 12px 32px; border-radius: 6px; transition: all 0.3s;">View Full Portfolio on Dribbble &rarr;</a>
+    </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 8: TEAM                                                   -->
+<!-- ================================================================ -->
+<section id="team" class="section-off fade-up">
+    <div class="label">Your Team</div>
+    <h2 style="margin-bottom: 8px;">Meet Your Dedicated Team</h2>
+    <div class="team-intro">
+        <p class="muted">Industry-leading subject matter experts from our internal team assigned directly to your project.</p>
+    </div>
+
+    <div class="team-group-label">Leadership</div>
+    <div class="team-grid">
+        <div class="team-card">
+            <div class="team-avatar">TA</div>
+            <div class="t-name">Trevor Anderson</div>
+            <div class="t-role">Founder & CEO | Strategic Direction</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">CF</div>
+            <div class="t-name">Cole Feigl</div>
+            <div class="t-role">Partner | Content & Brand Strategy</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">NC</div>
+            <div class="t-name">Nazareno Castro Bay</div>
+            <div class="t-role">Growth Marketing Strategy</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">RD</div>
+            <div class="t-name">Romina Della Vedova</div>
+            <div class="t-role">Operations | PM — Design & Creative</div>
+        </div>
+    </div>
+
+    <div class="team-group-label">Core Team</div>
+    <div class="team-grid">
+        <div class="team-card">
+            <div class="team-avatar">DC</div>
+            <div class="t-name">Daymit Crego</div>
+            <div class="t-role">Design & Creative</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">GP</div>
+            <div class="t-name">Gregorio Palacio</div>
+            <div class="t-role">Web Development & Creative</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">KS</div>
+            <div class="t-name">Kristen Skladd</div>
+            <div class="t-role">Senior Publicist | PR & Outreach</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">RM</div>
+            <div class="t-name">Reandra Maree</div>
+            <div class="t-role">Operations | Executive Assistant</div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 9: PRICING                                                -->
+<!-- ================================================================ -->
+<section id="pricing" class="section-white fade-up">
+    <div class="label">Investment Options</div>
+    <h2 style="margin-bottom: 8px;">Website Development Packages</h2>
+    <p class="muted section-narrow">Three options tailored to your budget and scope. All packages include responsive design, CMS content editing, SEO optimization, and team training.</p>
+
+    <div class="pricing-cards">
+        <div class="price-card">
+            <div class="price-label">Essential</div>
+            <div class="price-amount">$5,000</div>
+            <div class="price-period">one-time investment</div>
+            <div class="price-desc">A clean, professional 5-page static site with Netlify CMS.</div>
+            <ul class="price-features">
+                <li>5 custom-designed pages</li>
+                <li>Responsive design (mobile + tablet)</li>
+                <li>Netlify CMS content editor</li>
+                <li>Basic SEO optimization</li>
+                <li>Contact form with lead capture</li>
+                <li>Blog/newsroom page</li>
+                <li>CMS training session</li>
+            </ul>
+        </div>
+        <div class="price-card featured">
+            <div class="price-label">Professional</div>
+            <div class="price-amount">$7,500</div>
+            <div class="price-period">one-time investment</div>
+            <div class="price-desc">Full 7-8 page website with email integration, newsletter, and premium design.</div>
+            <ul class="price-features">
+                <li>7-8 custom-designed pages</li>
+                <li>Premium responsive design</li>
+                <li>Netlify CMS, WordPress, or headless CMS</li>
+                <li>Full SEO & AI visibility optimization</li>
+                <li>Blog/newsroom with categories</li>
+                <li>Newsletter signup & email integration</li>
+                <li>Contact form + demo request page</li>
+                <li>Platform screenshot galleries</li>
+                <li>Video placeholder sections</li>
+                <li>CMS training + documentation</li>
+            </ul>
+        </div>
+        <div class="price-card">
+            <div class="price-label">Premium</div>
+            <div class="price-amount">$10,000</div>
+            <div class="price-period">one-time investment</div>
+            <div class="price-desc">Custom React/Next.js build with headless CMS, animations, and integrations.</div>
+            <ul class="price-features">
+                <li>8-10 custom-designed pages</li>
+                <li>Native animations & interactivity</li>
+                <li>Custom API email connector</li>
+                <li>Advanced lead capture flows</li>
+                <li>AI chatbot placeholder</li>
+                <li>Enhanced SEO + schema markup</li>
+                <li>Priority support (30 days)</li>
+                <li>Brand guidelines documentation</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pricing-extras">
+        <div class="extra-block">
+            <div class="eb-info">
+                <h4>Flexible Agency Support</h4>
+                <p>On-demand expertise for updates & enhancements</p>
+            </div>
+            <div class="eb-price">$150<span>/hr</span></div>
+        </div>
+        <div class="extra-block">
+            <div class="eb-info">
+                <h4>Animated Explainer Video</h4>
+                <p>Custom product/platform explainer video</p>
+            </div>
+            <div class="eb-price">$3k<span>+</span></div>
+        </div>
+    </div>
+
+    <div style="margin-top: 36px;" class="materials-section">
+        <h4 style="color: var(--ac-teal); font-size: 14px; margin-bottom: 8px;">Supplied Materials</h4>
+        <p class="muted" style="margin-bottom: 12px;">The following materials are to be supplied by ACMS. These materials should be provided at the start of the project.</p>
+        <table class="materials-tbl">
+            <thead><tr><th>Materials to be supplied by ACMS</th></tr></thead>
+            <tbody>
+                <tr><td>Company logo files (vector/high-resolution formats)</td></tr>
+                <tr><td>Brand guidelines & approved messaging (if available)</td></tr>
+                <tr><td>Platform screenshots & feature descriptions</td></tr>
+                <tr><td>Draft content document (as previously discussed)</td></tr>
+                <tr><td>Team headshots & bios (if desired for About page)</td></tr>
+                <tr><td>Any existing marketing collateral or imagery</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 10: LONG-TERM VISION                                      -->
+<!-- ================================================================ -->
+<section id="vision" class="section-off fade-up">
+    <div class="label">Long-Term Growth</div>
+    <h2 style="margin-bottom: 8px;">From MVP Website to Full Digital Platform</h2>
+    <p class="muted section-narrow">As ACMS grows from your sister company to external clients, your website will grow with you. Here's the roadmap.</p>
+
+    <div class="vision-cards">
+        <div class="vision-card">
+            <div class="v-phase">Phase 1 — Now</div>
+            <h3>Establish & Launch</h3>
+            <p>Professional 5-8 page website that communicates credibility, drives prospect engagement, and gives your team full content management capabilities. Blog, newsletter, and contact infrastructure in place.</p>
+        </div>
+        <div class="vision-card">
+            <div class="v-phase">Phase 2 — Growth</div>
+            <h3>Expand & Enhance</h3>
+            <p>Add animated explainer videos, deeper platform feature pages, case studies from early clients, and advanced email automation flows. Integrate with your existing HIPAA-compliant communication systems.</p>
+        </div>
+        <div class="vision-card">
+            <div class="v-phase">Phase 3 — Scale</div>
+            <h3>Full Digital Engine</h3>
+            <p>Client portal infrastructure, ROI calculators, interactive demos, paid media campaigns for prospect acquisition, and content marketing strategy to establish ACMS as the thought leader in care management technology.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 11: CTA                                                   -->
+<!-- ================================================================ -->
+<div id="cta">
+    <div class="cta-inner">
+        <div class="label" style="color: var(--ac-teal);">Let's Build Something Great</div>
+        <h2 style="margin-bottom: 16px;">Ready When You Are</h2>
+        <p>We're excited about the opportunity to build the digital foundation for ACMS. We'd love to dive deeper into your vision and get started on creating a website that truly represents the quality of your platform.</p>
+        <div class="cta-info">
+            <strong>Trevor Anderson</strong>
+            <span>Founder & CEO, Anderson Collaborative</span>
+            <span>info@andersoncollaborative.com | 305-777-0471</span>
+            <span>4000 Ponce de Leon Blvd Suite 470, Coral Gables, FL 33146</span>
+        </div>
+        <div class="cta-tagline">Solving The Marketing Problems Of Today With The Strategies Of Tomorrow</div>
+    </div>
+</div>
+
+<div class="conf-bar">
+    Confidential: The contents of this document are confidential and intended solely for the client and their organization. Reproduction of, or forwarding to anyone not directly sent this document is strictly forbidden.
+</div>
+
+<!-- SCRIPTS -->
+<script>
+    // Scroll animations
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    // Active nav
+    const sections = document.querySelectorAll('section, #hero, #welcome, #cta');
+    const links = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+        let cur = '';
+        sections.forEach(s => { if (scrollY >= s.offsetTop - 200) cur = s.id; });
+        links.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+        });
+    });
+
+    // Smooth scroll
+    links.forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+
+</body>
+</html>
